@@ -19,3 +19,11 @@ describe("Se va a probar la calidad de los ingredientes", () => {
     });
   });
 });
+
+describe("Probar que se cambió la propiedad changeTest ", () => {
+  test("should click a button", () => {
+    const lastValue = wrapper.vm.changeTest;
+    wrapper.find("button").trigger("click");
+    expect(wrapper.vm.changeTest).toBe(lastValue + 1);
+  });
+});
