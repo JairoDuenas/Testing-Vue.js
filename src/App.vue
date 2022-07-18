@@ -3,10 +3,8 @@
     <section class="app-pokemon-main card">
       <img alt="pokemon" :src="image" />
       <p class="pokemon-name">{{ name }}</p>
-      <!--- Descomenta esta linea para probar la funcionalidad completa
       <button class="button" @click.prevent="makeRequest">SEARCH</button>
-       comenta la linea de abajo--->
-      <button class="button" @click.prevent="setData(data)">SEARCH</button>
+      <!-- <button class="button" @click.prevent="setData(data)">SEARCH</button> -->
     </section>
     <section class="app-pokemon-stats">
       <poke-stats
@@ -18,10 +16,8 @@
         <p id="abilities">ABILITIES</p>
         <ul>
           <li v-for="el in abilities" :key="el">
-            <!---- Descomenta esta linea para probar la funcionalidad completa
-            {{el.ability.name}}
-            comenta la linea de abajo--->
-            {{ el }}
+            {{ el.ability.name }}
+            <!-- {{ el }} -->
           </li>
         </ul>
       </div>
@@ -31,9 +27,8 @@
 
 <script>
 import PokeStats from "./components/PokeStats.vue";
-import { mockService } from "../public/mockCall";
 // Descomenta esta linea para probar la funcionalidad completa
-//import axios from 'axios'
+import axios from "axios";
 
 export default {
   name: "App",
@@ -58,23 +53,25 @@ export default {
   },
   methods: {
     //Descomenta esta linea para probar la funcionalidad completa
-    /*async makeRequest(){
-     // el 150 es la cantidad de pokemones que van a estar en el loop, cambialo si quieres ver mas, o menos
-    let randomSearch = await Math.floor(Math.random()*150 + 1) 
+    async makeRequest() {
+      // el 150 es la cantidad de pokemones que van a estar en el loop, cambialo si quieres ver mas, o menos
+      let randomSearch = await Math.floor(Math.random() * 150 + 1);
       try {
-        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${randomSearch}`)
-        const data = response.data
-        this.name = data.name
-        this.weight = data.weight
-        this.height = data.height
-        this.abilities = data.abilities
-        this.image = data.sprites.front_default
-        this.type = data.types.type.name
-        return response
+        const response = await axios.get(
+          `https://pokeapi.co/api/v2/pokemon/${randomSearch}`
+        );
+        const data = response.data;
+        this.name = data.name;
+        this.weight = data.weight;
+        this.height = data.height;
+        this.abilities = data.abilities;
+        this.image = data.sprites.front_default;
+        this.type = data.types.type.name;
+        return response;
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-  },**/
+    },
 
     setData(data) {
       try {
@@ -94,12 +91,12 @@ export default {
   },
   async created() {
     //Descomenta esta linea para probar la funcionalidad completa
-    //await this.makeRequest();
+    await this.makeRequest();
     //comenta la funcion de abajo
-    await mockService().then(response => {
+    /* await mockService().then(response => {
       this.data = response;
       this.setData(response);
-    });
+    }); */
   }
 };
 </script>
